@@ -6,10 +6,10 @@ import { routes } from './Routes/Routes/Routes';
 function App() {
   return (
     <div className="App">
-      <RouterProvider routes={routes}>
+      <RouterProvider router={routes}>
 
       </RouterProvider>
-    </div>
+    </div >
   );
 }
 
