@@ -1,9 +1,11 @@
 import React from 'react';
+import CourseCart from '../../CourseCart/CourseCart';
 
 const MainSideNav = () => {
     return (
         <div>
-            <h2>Main side nav</h2>
+            <h4 className='text-center'>Main side nav</h4>
+            <CourseCart></CourseCart>
         </div>
     );
 };

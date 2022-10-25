@@ -10,10 +10,10 @@ const Courses = () => {
             <Header></Header>
             <Container>
                 <Row>
-                    <Col lg="4">
+                    <Col lg="3">
                         <LeftSideNav></LeftSideNav>
                     </Col>
-                    <Col lg="8">
+                    <Col lg="9">
                         <MainSideNav></MainSideNav>
                     </Col>
                 </Row>
