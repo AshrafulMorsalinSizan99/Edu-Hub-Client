@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Header from '../Header/Header';
+import './Login.css';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const Login = () => {
         <div>
             <Header></Header>
             <h2 className='text-warning text-center'>Log In Now</h2>
-            <Form onSubmit={handleSubmit} className='w-50 mx-auto'>
+            <Form onSubmit={handleSubmit} className='w-50 mx-auto form'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name='email' type="email" placeholder="Enter email" required />
@@ -50,7 +51,9 @@ const Login = () => {
                 <Form.Text className="text-danger">
 
                 </Form.Text>
+                <p><small>New to EduHub? <Link to='/register'>Create a new account</Link></small></p>
             </Form>
+
         </div>
     );
 };
