@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Header from '../Header/Header';
 import './Login.css';
+import { FaGoogle } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
+
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const Login = () => {
+    const [error, setError] = useState('');
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -16,15 +21,18 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
                 navigate('/');
             })
             .catch(error => {
                 console.error(error);
+                setError(error.message);
             })
     }
     return (
@@ -49,8 +57,16 @@ const Login = () => {
                     Login
                 </Button>
                 <Form.Text className="text-danger">
-
+                    {error}
                 </Form.Text>
+                <br />
+                <br />
+                <ButtonGroup vertical>
+                    <Button variant="outline-primary"><FaGoogle></FaGoogle>Login with Google</Button>
+                    <Button variant="outline-dark"><FaGithub></FaGithub>Login with GitHub</Button>
+
+
+                </ButtonGroup>
                 <p><small>New to EduHub? <Link to='/register'>Create a new account</Link></small></p>
             </Form>
 
