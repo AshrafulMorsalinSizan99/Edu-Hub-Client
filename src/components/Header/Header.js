@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar'
@@ -9,12 +9,23 @@ import { Button, Image } from 'react-bootstrap';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
-
+    const [theme, setTheme] = useState('light-theme');
     const handleLogOut = () => {
         logOut()
             .then(() => { })
             .catch(error => console.error(error))
     }
+    const toggleTheme = () => {
+        if (theme === 'dark-theme') {
+            setTheme('light-theme');
+        }
+        else {
+            setTheme('dark-theme');
+        }
+    }
+    useEffect(() => {
+        document.body.className = theme;
+    }, [theme]);
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -27,6 +38,7 @@ const Header = () => {
                         <button><Link className='options' to='/faq'>FAQ</Link></button>
                         <button><Link className='options' to='/blog'>Blog</Link></button>
                         <button><Link className='options' to='/login'>Login</Link></button>
+                        <button onClick={() => toggleTheme()}>Toggle</button>
 
                     </Nav>
                     <Nav>
