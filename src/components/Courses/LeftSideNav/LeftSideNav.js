@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './LeftSideNav.css';
 
 const LeftSideNav = () => {
     const [categories, setCategories] = useState([]);
@@ -11,7 +12,7 @@ const LeftSideNav = () => {
     return (
         <div>
             <h4 className='text-center'>All Courses:{categories.length}</h4>
-            <div>
+            <div className='left-nav'>
                 {
                     categories.map(category => <p key={category.id}>
                         <Link to={`/courses/category/${category.id}`}>{category.course_name}</Link>

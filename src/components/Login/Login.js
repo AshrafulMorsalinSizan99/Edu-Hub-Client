@@ -7,14 +7,21 @@ import Header from '../Header/Header';
 import './Login.css';
 import { FaGoogle } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
-
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import app from '../../firebase/firebase.config';
+
+const auth = getAuth(app);
 
 const Login = () => {
     const [error, setError] = useState('');
+    const [user, setUser] = useState({});
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+
+    const provider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const from = location.state?.from?.pathname || '/';
 
@@ -36,6 +43,28 @@ const Login = () => {
             .catch(error => {
                 console.error(error);
                 setError(error.message);
+            })
+    }
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(res => {
+                const user = res.user;
+                setUser(user);
+                console.log(user);
+            })
+            .catch(e => {
+                console.error(e);
+            })
+    }
+    const handleGithubSignIn = () => {
+        signInWithPopup(auth, githubProvider)
+            .then(res => {
+                const user = res.user;
+                setUser(user);
+                console.log(user);
+            })
+            .catch(e => {
+                console.error(e);
             })
     }
     return (
@@ -65,8 +94,8 @@ const Login = () => {
                 <br />
                 <br />
                 <ButtonGroup vertical>
-                    <Button variant="outline-primary"><FaGoogle></FaGoogle>Login with Google</Button>
-                    <Button variant="outline-dark"><FaGithub></FaGithub>Login with GitHub</Button>
+                    <Button onClick={handleGoogleSignIn} variant="outline-primary"><FaGoogle></FaGoogle>Login with Google</Button>
+                    <Button onClick={handleGithubSignIn} variant="outline-dark"><FaGithub></FaGithub>Login with GitHub</Button>
 
 
                 </ButtonGroup>

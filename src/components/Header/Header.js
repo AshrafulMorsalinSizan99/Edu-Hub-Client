@@ -5,10 +5,12 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
-import { Button, Image } from 'react-bootstrap';
+import { Button, Image, Tooltip } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+    // console.log(user)
     const [theme, setTheme] = useState('light-theme');
     const handleLogOut = () => {
         logOut()
@@ -26,6 +28,7 @@ const Header = () => {
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -57,11 +60,22 @@ const Header = () => {
                             }
                         </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            {user?.photoURL ?
-                                <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
-                                :
-                                <FaUser></FaUser>
-                            }
+                            {/* <ReactTooltip title={user?.displayName}> */}
+                            {/* <Tooltip title={user?.displayName}> */}
+                            <Container data-tip data-for="name">
+                                {user?.photoURL ?
+
+                                    <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
+                                    :
+                                    <FaUser></FaUser>
+
+                                }
+                            </Container>
+                            <ReactTooltip id="name">
+                                <span>{user?.displayName}</span>
+                            </ReactTooltip>
+                            {/* </Tooltip> */}
+                            {/* </ReactTooltip> */}
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
