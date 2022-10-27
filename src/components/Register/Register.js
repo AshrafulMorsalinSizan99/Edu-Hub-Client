@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Header from '../Header/Header';
+
+
 
 
 const Register = () => {
     const [error, setError] = useState('');
     const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -16,6 +20,8 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const password = form.password.value;
 
+
+
         console.log(name, password);
         createUser(email, password)
             .then(result => {
@@ -23,6 +29,8 @@ const Register = () => {
                 console.log(user);
                 setError('');
                 form.reset();
+                navigate('/');
+
             })
             .catch(e => {
                 console.error(e);

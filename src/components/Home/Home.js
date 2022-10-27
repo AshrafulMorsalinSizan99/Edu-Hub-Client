@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 
+import './Home.css';
+
 
 const Home = () => {
     const { providerLogin } = useContext(AuthContext);
@@ -27,28 +29,28 @@ const Home = () => {
         <div>
             <Header></Header>
             <Carousel>
-                <Carousel.Item>
+                <Carousel.Item className='header1'>
                     <img
                         className="w-100 h-100 "
                         src={homepage}
                         alt="First slide"
                     />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <Carousel.Caption className='caption'>
+                        <h3 className='text-warning'>Welcome to Edu Hub</h3>
+                        <p className='text-warning'>A website where you will get your favorite courses. Do join with us and explore.</p>
                         <Button onClick={handleGoogleSignIn} variant='primary'>Join Us</Button>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item className='header1'>
                     <img
                         className="w-100 h-100"
                         src={homepage3}
                         alt="Second slide"
                     />
 
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <Carousel.Caption className='caption'>
+                        <h3 className='text-warning'>Welcome to Edu Hub</h3>
+                        <p className='text-warning'>A website where you will get your favorite courses. Do join with us and explore.</p>
                         <Button onClick={handleGoogleSignIn} variant='primary'>Join Us</Button>
                     </Carousel.Caption>
                 </Carousel.Item>
