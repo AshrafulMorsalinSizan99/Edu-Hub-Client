@@ -50,6 +50,7 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 setUser(user);
+                navigate(from, { replace: true });
                 console.log(user);
             })
             .catch(e => {
@@ -61,6 +62,7 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 setUser(user);
+                navigate(from, { replace: true });
                 console.log(user);
             })
             .catch(e => {

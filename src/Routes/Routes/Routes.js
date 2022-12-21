@@ -58,7 +58,7 @@ export const routes = createBrowserRouter([
                     {
                         path: '/courses/category/:id',
                         element: <Category></Category>,
-                        loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                        loader: ({ params }) => fetch(`https://edu-hub-server-roan.vercel.app/category/${params.id}`)
                     },
                     {
                         path: '/courses/courseDetails/:id',
@@ -67,7 +67,7 @@ export const routes = createBrowserRouter([
                     {
                         path: '/courses/category/category/:id',
                         element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-                        loader: ({ params }) => fetch(`http://localhost:5000/category/category/${params.id}`)
+                        loader: ({ params }) => fetch(`https://edu-hub-server-roan.vercel.app/category/category/${params.id}`)
                     }
 
                 ]

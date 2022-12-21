@@ -15,7 +15,7 @@ const CourseDetails = ({ course }) => {
     // const [categories, setCategories] = useState([]);
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/categories')
+    //     fetch('https://edu-hub-server-roan.vercel.app/categories')
     //         .then(res => res.json())
     //         .then(data => setCategories(data))
     // }, [])
